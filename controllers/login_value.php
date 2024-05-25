@@ -14,30 +14,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $email_login_input = mysqli_real_escape_string($conn, $_POST['email']);
     $password_input = $_POST['password'];
+    $password_input = md5($password_input);
 
-    $password_input = md5('password');
 
+    if ($email_login_input === 'ashakdckap@gmail.com') {
+        $mysql = "SELECT * FROM registerdb WHERE Email = 'ashakdckap@gmail.com' AND userpassword = '$password_input'";
+        $answer = $conn->query($mysql);
 
-    $sql = "SELECT * FROM registerdb WHERE Email = '$email_login_input' AND userpassword = '$password_input'";
-    
-    // echo "SQL Query: $sql<br>"; 
-    
-    $result = $conn->query($sql);
+        if ($answer && $answer->num_rows > 0) {
 
-    if ($result === false) {
-        die("Query failed: " . $conn->error);
+            header("Location: ../view/partials/actions.php?show_datas=true");
+            exit();
+        }
     }
 
-    if ($result->num_rows > 0) {
+    $sql = "SELECT * FROM registerdb WHERE Email = '$email_login_input' AND userpassword = '$password_input'";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $_SESSION['Email'] = $email_login_input;
         header("Location: ../view/partials/Home.view.php");
-
         exit();
     } else {
         echo "Invalid email or password.";
     }
-
-    $conn->close();
 }
-?>
+
+$conn->close();

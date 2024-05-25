@@ -1,5 +1,4 @@
 
-<!-- <link rel="stylesheet" href="../config.php"> -->
 <?php
 
 session_start();
@@ -13,7 +12,7 @@ if(isset($_POST['submit'])){
     $email_input = $_POST['email'];
     $password_input = $_POST['password'];
 
-    $password_input = md5('password');
+    $password_input = md5($password_input);
   
  
     $sql = "INSERT INTO  registerdb (Name, Email, userpassword) VALUES ('$name_input','$email_input','$password_input')";

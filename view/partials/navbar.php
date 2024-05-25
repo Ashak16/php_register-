@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
- <style>
-html, body {
+    <style>
+      html, body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -18,7 +18,8 @@ html, body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* height: 100%; */
+    height: 100%;
+    background-color: #f6e1e5;
     box-sizing: border-box;
 }
 
@@ -51,12 +52,25 @@ a#login_btn {
     text-decoration: none;
 }
 
+a#register_btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: indigo;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+}
+
 
 .unique {
     display: flex;
     justify-content: center;
 }
 
+/* Body Styling */
 .body {
     flex-grow: 1;
     display: flex;
@@ -68,13 +82,30 @@ a#login_btn {
     box-sizing: border-box;
 }
 
- </style>
+        #data_btn {
+            display: none;
+        }
+    </style>
+</head>
+
 <body>
     <div class="container">
         <div class="nav">
-            <h2>HOGWARTS UNIVERSITY</h2>
-           <a href="/controllers/logout.php" id="login_btn">LOGOUT</a>
+            <h2>
+                HOGWARTS UNIVERSITY
+                    <a href="/controllers/Datas.php" id="data_btn">DATAS</a>
+            </h2>
+            <a href="/controllers/logout.php" id="login_btn">LOGOUT</a>
+        </div>
+        <div class="body">
+            <h4>Dear learners summer courses registraion are open now.please enroll if not already</h4>
+           <div class="unique">
+           <a href="./view/partials/Register.view.php" id="register_btn">Register Now</a>
+           </div> 
         </div>
     </div>
+    
 </body>
+
+
 </html>
